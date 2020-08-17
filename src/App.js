@@ -3,6 +3,7 @@ import './App.css';
 import useSound from 'use-sound';
 
 import sound from './assets/sound2.mp3';
+import soundwave from './assets/sound2.wav';
 
 function App() {
   const [temp, changeTemp] = useState(0);
@@ -12,6 +13,7 @@ function App() {
   const [dot, changeDot] = useState(false);
   const [tempCount, changeTempCount] = useState(0);
   const [play] = useSound(sound);
+  const [playwave] = useSound(soundwave);
 
   const performWithDigit = (digit) => {
     if (digit === 'equal') {
@@ -67,6 +69,7 @@ function App() {
 
   const buttonPressed = (event) => {
     play();
+    playwave();
     switch (event) {
       case 0:
         console.log(dot);
