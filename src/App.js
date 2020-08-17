@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import useSound from 'use-sound';
+
+import sound from './assets/sound2.mp3';
 
 function App() {
   const [total, changeTotal] = useState(0);
@@ -9,6 +12,7 @@ function App() {
   const [operator, changeOperator] = useState('');
   const [dot, changeDot] = useState(false);
   const [tempCount, changeTempCount] = useState(0);
+  const [play] = useSound(sound);
 
   const performWithDigit = (digit) => {
     if (digit === 'equal') {
@@ -28,6 +32,8 @@ function App() {
         default:
           break;
       }
+      changePostTemp(0);
+      changePostTempCount(0);
     } else {
       if (operator === '') {
         changeTemp(10 * temp + digit);
@@ -61,6 +67,7 @@ function App() {
   //  }
 
   const buttonPressed = (event) => {
+    play();
     switch (event) {
       case 0:
         performWithDigit(0);
@@ -93,15 +100,19 @@ function App() {
         performWithDigit(9);
         break;
       case 'plus':
+        performWithDigit('equal');
         changeOperator('+');
         break;
       case 'divide':
+        performWithDigit('equal');
         changeOperator('/');
         break;
       case 'multiply':
+        performWithDigit('equal');
         changeOperator('*');
         break;
       case 'minus':
+        performWithDigit('equal');
         changeOperator('-');
         break;
       case 'dot':
@@ -109,6 +120,7 @@ function App() {
         break;
       case 'equal':
         performWithDigit('equal');
+
         break;
       case 'clear':
         changeTotal(0);
@@ -127,19 +139,29 @@ function App() {
     <div className="App">
       <div style={{ textAlign: 'center' }} className="">
         <p>
-          inspired by lil.calculator. <br />
-          created by @tanishqxyz.
-          <span role="img" aria-label="emoji">
-            &nbsp; 🤭
+          <a target="_new" href="https://lil.software/hardware/">
+            inspired by lil hardware calculator.
+          </a>{' '}
+          <br />
+          <span className="subtitle">
+            created by{' '}
+            <a href="https://twitter.com/tanishqxyz"> Tanishq (@tanishqxyz) </a>
+            <span role="img" aria-label="emoji">
+              &nbsp;
+            </span>
           </span>
+          <br />
+          <br />
         </p>
         <div className="calculator">
           <div className="output-window">
             <div className="output-window-inner">
               <p>
-                {temp - Math.floor(temp) !== 0
-                  ? temp.toFixed(2)
-                  : Math.round(temp)}
+                {postTemp === 0
+                  ? temp - Math.floor(temp) !== 0
+                    ? temp.toFixed(2)
+                    : Math.round(temp)
+                  : postTemp}
               </p>
             </div>
           </div>
@@ -184,6 +206,42 @@ function App() {
             <button onClick={() => buttonPressed(7)} className="seven"></button>
           </div>
         </div>
+        <br />
+        <br />
+        <a
+          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-show-count="false"
+        >
+          Tweet
+        </a>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+        <br />
+        <a
+          href="https://twitter.com/tanishqxyz?ref_src=twsrc%5Etfw"
+          class="twitter-follow-button"
+          data-show-count="false"
+        >
+          Follow @tanishqxyz
+        </a>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+        <br />
+        <br />
+        <a
+          class="github-button"
+          href="https://github.com/tanishqsh/hardware-calculator/"
+          aria-label="Follow @tanishqsh on GitHub"
+        >
+          Star On Github
+        </a>
       </div>
     </div>
   );

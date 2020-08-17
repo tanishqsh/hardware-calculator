@@ -1,15 +1,37 @@
 .App {
-  height: 100vh;
+  margin-top: 100px;
+  height: auto;
   width: 100vw;
   display: flex;
+  font-size: 20px;
+  font-family: astoria-sans, sans-serif;
+  font-style: normal;
   justify-content: center;
   align-items: center;
   background: #fefefe;
 }
 
+.follow-buttons {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+a,
+a:visited,
+a:focus {
+  color: #383838;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.subtitle {
+  font-size: 15px;
+}
+
 .calculator {
   position: relative;
-  background: url(./assets/cover.png);
+  background: url(./assets/cover2.png);
   background-size: contain;
   height: 700px;
   width: 500px;
