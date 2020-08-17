@@ -15,6 +15,8 @@ function App() {
   const [play] = useSound(sound);
   const [playwave] = useSound(soundwave);
 
+  const [showBack, changeShowBack] = useState(false);
+
   const performWithDigit = (digit) => {
     if (digit === 'equal') {
       switch (operator) {
@@ -46,26 +48,60 @@ function App() {
     }
   };
 
-  //  if (operator === '') {
-  //    changeTemp(digit);
-  //  } else {
-  //    switch (operator) {
-  //      case '+':
-  //        changeTemp(temp + digit);
-  //        break;
-  //      case '-':
-  //        changeTemp(temp - digit);
-  //        break;
-  //      case '/':
-  //        changeTemp(temp / digit);
-  //        break;
-  //      case '*':
-  //        changeTemp(temp * digit);
-  //        break;
-  //      default:
-  //        break;
-  //    }
-  //  }
+  const ShowCalculator = () => {
+    return (
+      <div className="calculator">
+        <div className="output-window">
+          <div className="output-window-inner">
+            <p>
+              {postTemp === 0
+                ? temp - Math.floor(temp) !== 0
+                  ? temp.toFixed(2)
+                  : Math.round(temp)
+                : postTemp}
+            </p>
+          </div>
+        </div>
+        <div className="button-container">
+          <button onClick={() => buttonPressed(0)} className="zero"></button>
+          <button onClick={() => buttonPressed(1)} className="one"></button>
+          <button onClick={() => buttonPressed(2)} className="two"></button>
+          <button onClick={() => buttonPressed(3)} className="three"></button>
+          <button onClick={() => buttonPressed(4)} className="four"></button>
+          <button onClick={() => buttonPressed(5)} className="five"></button>
+          <button onClick={() => buttonPressed(6)} className="six"></button>
+          <button onClick={() => buttonPressed(8)} className="eight"></button>
+          <button onClick={() => buttonPressed(9)} className="nine"></button>
+          <button
+            onClick={() => buttonPressed('plus')}
+            className="plus"
+          ></button>
+          <button
+            onClick={() => buttonPressed('minus')}
+            className="minus"
+          ></button>
+          <button onClick={() => buttonPressed('dot')} className="dot"></button>
+          <button
+            onClick={() => buttonPressed('clear')}
+            className="clear"
+          ></button>
+          <button
+            onClick={() => buttonPressed('equal')}
+            className="equal"
+          ></button>
+          <button
+            onClick={() => buttonPressed('multiply')}
+            className="multiply"
+          ></button>
+          <button
+            onClick={() => buttonPressed('divide')}
+            className="divide"
+          ></button>
+          <button onClick={() => buttonPressed(7)} className="seven"></button>
+        </div>
+      </div>
+    );
+  };
 
   const buttonPressed = (event) => {
     play();
@@ -155,59 +191,19 @@ function App() {
           <br />
           <br />
         </p>
-        <div className="calculator">
-          <div className="output-window">
-            <div className="output-window-inner">
-              <p>
-                {postTemp === 0
-                  ? temp - Math.floor(temp) !== 0
-                    ? temp.toFixed(2)
-                    : Math.round(temp)
-                  : postTemp}
-              </p>
-            </div>
+        {showBack ? (
+          <div data-aos="flip-left" className="back">
+            <br />
           </div>
-          <div className="button-container">
-            <button onClick={() => buttonPressed(0)} className="zero"></button>
-            <button onClick={() => buttonPressed(1)} className="one"></button>
-            <button onClick={() => buttonPressed(2)} className="two"></button>
-            <button onClick={() => buttonPressed(3)} className="three"></button>
-            <button onClick={() => buttonPressed(4)} className="four"></button>
-            <button onClick={() => buttonPressed(5)} className="five"></button>
-            <button onClick={() => buttonPressed(6)} className="six"></button>
-            <button onClick={() => buttonPressed(8)} className="eight"></button>
-            <button onClick={() => buttonPressed(9)} className="nine"></button>
-            <button
-              onClick={() => buttonPressed('plus')}
-              className="plus"
-            ></button>
-            <button
-              onClick={() => buttonPressed('minus')}
-              className="minus"
-            ></button>
-            <button
-              onClick={() => buttonPressed('dot')}
-              className="dot"
-            ></button>
-            <button
-              onClick={() => buttonPressed('clear')}
-              className="clear"
-            ></button>
-            <button
-              onClick={() => buttonPressed('equal')}
-              className="equal"
-            ></button>
-            <button
-              onClick={() => buttonPressed('multiply')}
-              className="multiply"
-            ></button>
-            <button
-              onClick={() => buttonPressed('divide')}
-              className="divide"
-            ></button>
-            <button onClick={() => buttonPressed(7)} className="seven"></button>
-          </div>
-        </div>
+        ) : (
+          <ShowCalculator />
+        )}
+        <button
+          onClick={() => changeShowBack(!showBack)}
+          className="toggleButton"
+        >
+          Switch
+        </button>
         <br />
         <br />
         <a
