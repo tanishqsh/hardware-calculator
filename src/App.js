@@ -1,24 +1,190 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [total, changeTotal] = useState(0);
+  const [temp, changeTemp] = useState(0);
+  const [postTemp, changePostTemp] = useState(0);
+  const [postTempCount, changePostTempCount] = useState(0);
+  const [operator, changeOperator] = useState('');
+  const [dot, changeDot] = useState(false);
+  const [tempCount, changeTempCount] = useState(0);
+
+  const performWithDigit = (digit) => {
+    if (digit === 'equal') {
+      switch (operator) {
+        case '+':
+          changeTemp(temp + postTemp);
+          break;
+        case '-':
+          changeTemp(temp - postTemp);
+          break;
+        case '/':
+          changeTemp(temp / postTemp);
+          break;
+        case '*':
+          changeTemp(temp * postTemp);
+          break;
+        default:
+          break;
+      }
+    } else {
+      if (operator === '') {
+        changeTemp(10 * temp + digit);
+        changeTempCount(tempCount + 1);
+      } else {
+        changePostTemp(10 * postTemp + digit);
+        changePostTempCount(postTempCount + 1);
+      }
+    }
+  };
+
+  //  if (operator === '') {
+  //    changeTemp(digit);
+  //  } else {
+  //    switch (operator) {
+  //      case '+':
+  //        changeTemp(temp + digit);
+  //        break;
+  //      case '-':
+  //        changeTemp(temp - digit);
+  //        break;
+  //      case '/':
+  //        changeTemp(temp / digit);
+  //        break;
+  //      case '*':
+  //        changeTemp(temp * digit);
+  //        break;
+  //      default:
+  //        break;
+  //    }
+  //  }
+
+  const buttonPressed = (event) => {
+    switch (event) {
+      case 0:
+        performWithDigit(0);
+        break;
+      case 1:
+        performWithDigit(1);
+        break;
+      case 2:
+        performWithDigit(2);
+        break;
+      case 3:
+        performWithDigit(3);
+        break;
+      case 4:
+        performWithDigit(4);
+        break;
+      case 5:
+        performWithDigit(5);
+        break;
+      case 6:
+        performWithDigit(6);
+        break;
+      case 7:
+        performWithDigit(7);
+        break;
+      case 8:
+        performWithDigit(8);
+        break;
+      case 9:
+        performWithDigit(9);
+        break;
+      case 'plus':
+        changeOperator('+');
+        break;
+      case 'divide':
+        changeOperator('/');
+        break;
+      case 'multiply':
+        changeOperator('*');
+        break;
+      case 'minus':
+        changeOperator('-');
+        break;
+      case 'dot':
+        changeDot(true);
+        break;
+      case 'equal':
+        performWithDigit('equal');
+        break;
+      case 'clear':
+        changeTotal(0);
+        changeTemp(0);
+        changePostTemp(0);
+        changeTempCount(0);
+        changePostTempCount(0);
+        changeOperator('');
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <div style={{ textAlign: 'center' }} className="">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          inspired by lil.calculator. <br />
+          created by @tanishqxyz.
+          <span role="img" aria-label="emoji">
+            &nbsp; 🤭
+          </span>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="calculator">
+          <div className="output-window">
+            <div className="output-window-inner">
+              <p>
+                {temp - Math.floor(temp) !== 0
+                  ? temp.toFixed(2)
+                  : Math.round(temp)}
+              </p>
+            </div>
+          </div>
+          <div className="button-container">
+            <button onClick={() => buttonPressed(0)} className="zero"></button>
+            <button onClick={() => buttonPressed(1)} className="one"></button>
+            <button onClick={() => buttonPressed(2)} className="two"></button>
+            <button onClick={() => buttonPressed(3)} className="three"></button>
+            <button onClick={() => buttonPressed(4)} className="four"></button>
+            <button onClick={() => buttonPressed(5)} className="five"></button>
+            <button onClick={() => buttonPressed(6)} className="six"></button>
+            <button onClick={() => buttonPressed(8)} className="eight"></button>
+            <button onClick={() => buttonPressed(9)} className="nine"></button>
+            <button
+              onClick={() => buttonPressed('plus')}
+              className="plus"
+            ></button>
+            <button
+              onClick={() => buttonPressed('minus')}
+              className="minus"
+            ></button>
+            <button
+              onClick={() => buttonPressed('dot')}
+              className="dot"
+            ></button>
+            <button
+              onClick={() => buttonPressed('clear')}
+              className="clear"
+            ></button>
+            <button
+              onClick={() => buttonPressed('equal')}
+              className="equal"
+            ></button>
+            <button
+              onClick={() => buttonPressed('multiply')}
+              className="multiply"
+            ></button>
+            <button
+              onClick={() => buttonPressed('divide')}
+              className="divide"
+            ></button>
+            <button onClick={() => buttonPressed(7)} className="seven"></button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,38 +1,158 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background: #fefefe;
 }
 
-.App-link {
-  color: #61dafb;
+.calculator {
+  position: relative;
+  background: url(./assets/cover.png);
+  background-size: contain;
+  height: 700px;
+  width: 500px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.output-window {
+  position: absolute;
+  height: 150px;
+  top: 37px;
+  left: 56px;
+  opacity: 1;
+  border-radius: 13px 13px 13px 13px;
+  width: 390px;
+  background: #b1b4b5;
+  font-family: mono45-headline, monospace;
+  font-weight: 300;
+  color: #383838;
+  font-style: normal;
+}
+
+.output-window-inner {
+  position: relative;
+}
+
+.output-window-inner p {
+  font-size: 75px;
+  margin-top: 30px;
+  padding-right: 50px;
+  text-align: right;
+}
+
+.calculator button {
+  position: absolute;
+  outline: none;
+  border: none;
+  min-height: 70px;
+  min-width: 70px;
+  background-size: cover;
+  transform: translateY(-0.5px);
+}
+
+.calculator button:hover {
+  transform: translateY(0.5px);
+}
+
+.zero {
+  background: url(./assets/0.png);
+  top: 493px;
+  left: 165px;
+}
+
+.one {
+  background: url(./assets/1.png);
+  top: 402px;
+  left: 64px;
+}
+
+.two {
+  background: url(./assets/2.png);
+  top: 402px;
+  left: 165px;
+}
+
+.three {
+  background: url(./assets/3.png);
+  top: 402px;
+  left: 267px;
+}
+
+.four {
+  background: url(./assets/4.png);
+  top: 310px;
+  left: 64px;
+}
+
+.five {
+  background: url(./assets/5.png);
+  top: 310px;
+  left: 165px;
+}
+
+.six {
+  background: url(./assets/6.png);
+  top: 310px;
+  left: 267px;
+}
+
+.seven {
+  background: url(./assets/7.png);
+  top: 219px;
+  left: 64px;
+}
+
+.eight {
+  background: url(./assets/8.png);
+  top: 219px;
+  left: 165px;
+}
+
+.nine {
+  background: url(./assets/9.png);
+  top: 219px;
+  left: 267px;
+}
+
+.plus {
+  background: url(./assets/plus.png);
+  top: 493px;
+  left: 368px;
+}
+
+.minus {
+  background: url(./assets/minus.png);
+  top: 402px;
+  left: 368px;
+}
+
+.multiply {
+  background: url(./assets/multiply.png);
+  top: 310px;
+  left: 368px;
+}
+
+.divide {
+  background: url(./assets/Divide.png);
+  top: 219px;
+  left: 368px;
+}
+
+.dot {
+  background: url(./assets/dot.png);
+  top: 493px;
+  left: 64px;
+}
+
+.clear {
+  background: url(./assets/C.png);
+  top: 493px;
+  left: 267px;
+}
+
+.equal {
+  background: url(./assets/equal.png);
+  top: 584px;
+  left: 368px;
 }
