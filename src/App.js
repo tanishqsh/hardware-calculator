@@ -204,7 +204,11 @@ function App() {
           <br />
           <span className="subtitle">
             created by{' '}
-            <a href="https://twitter.com/tanishqxyz"> Tanishq (@tanishqxyz) </a>
+            <a href="https://twitter.com/tanishqxyz">
+              {' '}
+              Tanishq (@tanishqxyz) ~ calculations are experimental, just like
+              our lives. For Design.{' '}
+            </a>
             <span role="img" aria-label="emoji">
               &nbsp;
             </span>
