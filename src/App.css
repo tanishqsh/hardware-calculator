@@ -14,6 +14,7 @@
 .follow-buttons {
   position: absolute;
   left: 20px;
+  font-size: 14px;
   bottom: 20px;
 }
 
@@ -177,4 +178,112 @@ a:focus {
   background: url(./assets/equal.png);
   top: 584px;
   left: 368px;
+}
+
+@media (max-width: 768px) {
+  .App {
+    margin-top: 10px;
+    transform: scale(0.8);
+  }
+  .zero {
+    background: url(./assets/0.png);
+    top: 493px;
+    left: 163px;
+  }
+
+  .one {
+    background: url(./assets/1.png);
+    top: 402px;
+    left: 62px;
+  }
+
+  .two {
+    background: url(./assets/2.png);
+    top: 402px;
+    left: 163px;
+  }
+
+  .three {
+    background: url(./assets/3.png);
+    top: 400px;
+    left: 265px;
+  }
+
+  .four {
+    background: url(./assets/4.png);
+    top: 310px;
+    left: 62px;
+  }
+
+  .five {
+    background: url(./assets/5.png);
+    top: 310px;
+    left: 163px;
+  }
+
+  .six {
+    background: url(./assets/6.png);
+    top: 310px;
+    left: 265px;
+  }
+
+  .seven {
+    background: url(./assets/7.png);
+    top: 219px;
+    left: 62px;
+  }
+
+  .eight {
+    background: url(./assets/8.png);
+    top: 219px;
+    left: 163px;
+  }
+
+  .nine {
+    background: url(./assets/9.png);
+    top: 219px;
+    left: 265px;
+  }
+
+  .plus {
+    background: url(./assets/plus.png);
+    top: 493px;
+    left: 366px;
+  }
+
+  .minus {
+    background: url(./assets/minus.png);
+    top: 402px;
+    left: 366px;
+  }
+
+  .multiply {
+    background: url(./assets/multiply.png);
+    top: 310px;
+    left: 366px;
+  }
+
+  .divide {
+    background: url(./assets/Divide.png);
+    top: 219px;
+    left: 366px;
+  }
+
+  .dot {
+    background: url(./assets/dot.png);
+    top: 493px;
+    left: 62px;
+  }
+
+  .clear {
+    background: url(./assets/C.png);
+    top: 491px;
+    left: 265px;
+  }
+
+  .equal {
+    background: url(./assets/equal.png);
+    top: 584px;
+    left: 366px;
+  }
 }

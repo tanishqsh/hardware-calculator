@@ -5,7 +5,6 @@ import useSound from 'use-sound';
 import sound from './assets/sound2.mp3';
 
 function App() {
-  const [total, changeTotal] = useState(0);
   const [temp, changeTemp] = useState(0);
   const [postTemp, changePostTemp] = useState(0);
   const [postTempCount, changePostTempCount] = useState(0);
@@ -70,6 +69,7 @@ function App() {
     play();
     switch (event) {
       case 0:
+        console.log(dot);
         performWithDigit(0);
         break;
       case 1:
@@ -123,7 +123,6 @@ function App() {
 
         break;
       case 'clear':
-        changeTotal(0);
         changeTemp(0);
         changePostTemp(0);
         changeTempCount(0);
