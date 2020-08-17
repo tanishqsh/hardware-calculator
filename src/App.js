@@ -12,6 +12,7 @@ function App() {
   const [operator, changeOperator] = useState('');
   const [dot, changeDot] = useState(false);
   const [tempCount, changeTempCount] = useState(0);
+  const [dotCount, changeDotCount] = useState(1);
   const [play] = useSound(sound);
   const [playwave] = useSound(soundwave);
 
@@ -21,16 +22,16 @@ function App() {
     if (digit === 'equal') {
       switch (operator) {
         case '+':
-          changeTemp(temp + postTemp);
+          changeTemp(parseFloat(temp) + postTemp);
           break;
         case '-':
-          changeTemp(temp - postTemp);
+          changeTemp(parseFloat(temp) - postTemp);
           break;
         case '/':
-          changeTemp(temp / postTemp);
+          changeTemp(parseFloat(temp) / postTemp);
           break;
         case '*':
-          changeTemp(temp * postTemp);
+          changeTemp(parseFloat(temp) * postTemp);
           break;
         default:
           break;
@@ -39,9 +40,20 @@ function App() {
       changePostTempCount(0);
     } else {
       if (operator === '') {
-        changeTemp(10 * temp + digit);
-        changeTempCount(tempCount + 1);
+        if (dot) {
+          let number = parseFloat(temp);
+          number = digit / Math.pow(10, dotCount);
+          console.log('Number:' + number);
+          changeDotCount(dotCount + 1);
+          console.log('Dot Count: ' + dotCount);
+          console.log('temp:' + temp);
+          changeTemp((parseFloat(temp) + number).toFixed(dotCount));
+        } else {
+          changeTemp(10 * temp + digit);
+          changeTempCount(tempCount + 1);
+        }
       } else {
+        changeDot(false);
         changePostTemp(10 * postTemp + digit);
         changePostTempCount(postTempCount + 1);
       }
@@ -54,7 +66,9 @@ function App() {
         <div className="output-window">
           <div className="output-window-inner">
             <p>
-              {postTemp === 0
+              {dot
+                ? temp
+                : postTemp === 0
                 ? temp - Math.floor(temp) !== 0
                   ? temp.toFixed(2)
                   : Math.round(temp)
@@ -156,13 +170,19 @@ function App() {
         changeOperator('-');
         break;
       case 'dot':
+        if (!dot) {
+          changeTemp(temp.toString() + '.');
+        }
         changeDot(true);
+
         break;
       case 'equal':
         performWithDigit('equal');
 
         break;
       case 'clear':
+        changeDotCount(1);
+        changeDot(false);
         changeTemp(0);
         changePostTemp(0);
         changeTempCount(0);
