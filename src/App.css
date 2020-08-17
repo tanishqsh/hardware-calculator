@@ -207,8 +207,10 @@ a:focus {
 
 @media (max-width: 768px) {
   .App {
-    margin-top: 10px;
+    margin-top: 0px;
+    touch-action: manipulation;
     transform: scale(0.8);
+    height: 100vh;
   }
   .zero {
     background: url(./assets/0.png);

@@ -106,6 +106,7 @@ function App() {
   const buttonPressed = (event) => {
     play();
     playwave();
+
     switch (event) {
       case 0:
         console.log(dot);
